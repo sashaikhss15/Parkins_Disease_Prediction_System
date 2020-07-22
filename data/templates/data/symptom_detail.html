@@ -1,0 +1,24 @@
+{% extends 'data/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="thumbnail col-md-4">
+      <h3 class="text-sm-center text-primary">{{ symptom_detail.symptom_name }}</h3>
+      <hr/>
+      <blockquote><h5>{{ symptom_detail.symptom_description|linebreaks }}</h5></blockquote>
+      <br>
+      <!-- Delete Album -->
+      <div align="end">
+        <form action="{% url 'data:symptom-delete' symptom_detail.id %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <input type="hidden" name="symptom_id" value="{{ symptom_detail.id }}"/>
+          <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+{% endblock %}

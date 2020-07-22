@@ -1,0 +1,21 @@
+{% extends 'data/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center align-items-md-center custom-margin">
+    <a href="{% url 'data:symptoms-list' %}">
+      <div class="thumbnail col-md-offset-3 col-md-2" align="center">View<br>Symptoms</div>
+    </a>
+    <a href="{% url 'data:diseases-list' %}">
+      <div class="thumbnail col-md-offset-2 col-md-2" align="center">View<br>Diseases</div>
+    </a>
+  </div>
+  <div class="row justify-content-md-center align-items-md-center ">
+    <a href="{% url 'data:symptom-add' %}">
+      <div class="thumbnail col-md-offset-3 col-md-2" align="center">Add<br>Symptoms</div>
+    </a>
+    <a href="{% url 'data:disease-add' %}">
+      <div class="thumbnail col-md-offset-2 col-md-2" align="center">Add<br>Diseases</div>
+    </a>
+  </div>
+</div>
+{% endblock %}

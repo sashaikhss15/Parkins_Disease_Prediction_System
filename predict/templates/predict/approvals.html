@@ -1,0 +1,29 @@
+{% extends 'predict/base.html' %}
+{% block predict_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="approvals">
+		{% for single in data %}
+			<div class="thumbnail single-item">
+		    <span><label class="approvals-label">Name :&nbsp;</label><span class="name">{{ single.name }}</span></span>
+		    <span><label class="approvals-label">Disease :&nbsp;</label><span class="non-name">{{ single.disease }}</span></span>
+		    <span><label class="approvals-label">Confidence :&nbsp;</label><span class="non-name">{{ single.confidence }} %</span></span>
+		    <span><label class="approvals-label">Symptoms :&nbsp;</label><span class="non-name">{{ single.symptoms }}</span></span>
+				{% if single.is_user %}
+					<span><label class="approvals-label">Gender :&nbsp;</label><span class="non-name">{{ single.gender }}</span></span>
+					<span><label class="approvals-label">Age :&nbsp;</label><span class="non-name">{{ single.age }}</span></span>
+					<span><label class="approvals-label">Smoker :&nbsp;</label><span class="non-name">{{ single.smoker }}</span></span>
+					<span><label class="approvals-label">Height :&nbsp;</label><span class="non-name">{{ single.height }}</span></span>
+					<span><label class="approvals-label">Weight :&nbsp;</label><span class="non-name">{{ single.weight }}</span></span>
+					<span><label class="approvals-label">Blood Pressure :&nbsp;</label><span class="non-name">{{ single.blood_pressure }}</span></span>
+				{% endif %}
+		    <br>
+		    <div class="buttons">
+		    	<a class="btn btn-danger" href="{% url 'predict:reject' single.id %}">Reject</a>
+		    	<a class="btn btn-custom" href="{% url 'predict:approve' single.id %}">Approve</a>
+		    </div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

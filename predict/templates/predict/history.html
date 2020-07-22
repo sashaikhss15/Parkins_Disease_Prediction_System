@@ -1,0 +1,25 @@
+{% extends 'predict/base.html' %}
+{% block history_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+	
+	{% for single in data %}
+	<div class="row justify-content-center">
+		<div class="thumbnail col-md-6 m-md-auto">
+			<span><label class="approvals-label">Disease Name :&nbsp;</label><span class="name">{{ single.disease_name }}</span></span><br>
+			<span><label class="approvals-label">Confidence :&nbsp;</label><span class="non-name">{{ single.confidence }} %</span></span><br>
+		  <span><label class="approvals-label">Symptoms :&nbsp;</label><span class="non-name">{{ single.symptoms }}</span></span><br>
+		  {% if single.key == 1 %}
+		  	<span><label class="approvals-label">Approval :&nbsp;</label><span class="name">Pending...</span></span>
+		  {% elif single.key == 2 %}
+				<span><label class="text-primary">Approved By :&nbsp;</label><span class="name">{{ single.approved_by }}</span></span>
+		  {% elif single.key == 3 %}
+				<span><label class="text-danger">Rejected By :&nbsp;</label><span class="name">{{ single.rejected_by }}</span></span>
+		  {% endif %}
+		  <br>
+		</div>
+	</div>
+	{% endfor %}
+	
+</div>
+{% endblock %}

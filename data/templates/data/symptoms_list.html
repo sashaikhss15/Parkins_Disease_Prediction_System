@@ -1,0 +1,20 @@
+{% extends 'data/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="thumbnail col-md-4">
+      <h3 class="text-sm-center">Symptoms</h3>
+      <h5 class="text-sm-center text-info">&nbsp;Total : {{ count }}</h5><br>
+      <ol>
+        {% for symptom in symptoms %}
+        <li>
+          <h5>
+            <a class="link-none" href="{% url 'data:symptom-details' symptom.id %}">{{ symptom.symptom_name }}</a>
+          </h5>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Predict</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'predict/style.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Disease Prediction System</a>
+    </div>
+
+    <!-- Items -->
+    <div class="collapse navbar-collapse" id="topNavBar">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="{% block predict_active %}{% endblock %}">
+          {% if is_doctor %}
+          <a href="{% url 'predict:approvals' %}">Approvals</a>
+          {% else %}
+          <a href="{% url 'predict:index' %}">Predict</a>
+          {% endif %}
+        </li>
+        <li class="{% block history_active %}{% endblock %}">
+          {% if not is_doctor and logged_in_status %}
+          <a href="{% url 'predict:history' %}">History</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Account{% endblock %}</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Disease Prediction System</a>
+    </div>
+
+    <!-- Items -->
+    <div class="collapse navbar-collapse" id="topNavBar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+          <a href="{% url 'account:login_user' %}">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:register_patient' %}">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:register_doctor' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:logout_user' %}">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <form class="form-group" role="form" action="{% url 'account:login_user'%}" method="post">
+      <div class="row justify-content-md-center align-items-md-center">
+          <div id="index" class="thumbnail col-md-offset-4 col-md-4">
+            <h3>Log<span class="text-info">IN</span></h3><br>
+            {% if error_message %}
+                <span class="alert-danger"><strong>{{ error_message }}</strong></span>
+                <br>
+            {% endif %}
+            {% csrf_token %}
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-custom-display" type="button">Username</button>
+                  </span>
+                  <input id="id_username"  name="username" type="text" class="form-control">
+                </div>
+                <br>
+                 <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-custom-display" type="button">Password</button>
+                  </span>
+                  <input id="id_password" name="password" type="password" class="form-control">
+                </div>
+                <br>
+                <br>
+                <div class="justify-content-md-center" align="center">
+                  <input class="btn btn-custom btn-md btn-block" type="submit" value="Login">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br>
+    </div>
+</body>
+</html>

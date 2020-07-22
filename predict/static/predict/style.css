@@ -1,0 +1,143 @@
+body {
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #BFD5E2;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Oswald', cursive;
+    text-transform: uppercase;
+}
+
+.thumbnail {
+	z-index: 10;
+	padding: 2.5rem 4.5rem;
+	font-family: 'Oswald', sans-serif;
+	text-transform: uppercase;
+}
+
+.custom-margin {
+	margin-top: 2rem;
+}
+
+a:link { 
+	text-decoration: none; 
+} 
+
+a:hover { 
+	text-decoration: none; 
+}
+
+hr {
+	border-top: 1px solid gray;
+}
+
+.btn-custom {
+	background-color: #051F24;
+	color: white;
+}
+
+.btn-custom:hover,
+ .btn-custom:focus,
+  .btn-custom:active,
+   .btn-custom.active,
+    .open>.dropdown-toggle.btn-custom {
+    color: #fff;
+    background-color: #BFD5E2;
+    color: #051F24;
+}
+
+.btn-custom-display {
+	background-color: #051F24;
+	color: white;
+	text-transform: uppercase;
+}
+
+.btn-custom-display:hover,
+ .btn-custom-display:focus,
+  .btn-custom-display:active,
+   .btn-custom-display.active,
+    .open>.dropdown-toggle.btn-custom-display {
+	background-color: #051F24;
+	color: white;
+}
+
+.result {
+	text-shadow: 1px solid black;
+	text-decoration-line: underline;
+}
+
+.approvals {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 4rem;
+	height: 100%;
+}
+
+.symptoms {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 1rem;
+	height: 100%;
+}
+
+.single-item {
+	display: grid;
+	align-items: end;
+	text-transform: capitalize;
+	color: #051F24;
+	font-style: bold;
+}
+
+.name {
+	color: #051F24;
+	text-transform: uppercase;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+}
+
+.non-name {
+	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+}
+
+.approvals-label {
+	color: #505C5F;
+}
+
+.buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 2rem;
+}
+
+@media (min-width: 600px) and (max-width: 1080px) {
+	.approvals {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 2rem;
+		height: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.approvals {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-column-gap: 2rem;
+		height: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.symptoms {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-column-gap: 2rem;
+		height: 100%;
+	}
+}

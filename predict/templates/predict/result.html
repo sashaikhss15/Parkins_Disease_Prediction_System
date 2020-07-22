@@ -1,0 +1,54 @@
+{% extends 'predict/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 thumbnail">
+      <div class="row">
+        <div class="col-md-9">
+          <h3 class="result">Prediction Result</h3><br><br>
+          <div class="input-group">
+			      <span class="input-group-btn">
+			        <button class="btn btn-custom-display" type="button">Predicted Disease</button>
+			      </span>
+            <input type="text" class="form-control" value="{{ data.disease_name }}" readonly>
+          </div>
+          <br>
+          <div class="input-group">
+			      <span class="input-group-btn">
+			        <button class="btn btn-custom-display" type="button">Prediction Confidence</button>
+			      </span>
+            <input type="text" class="form-control" value="{{ data.prediction_confidence }} %" readonly>
+          </div>
+          <br>
+          <span class="input-group-btn d-flex align-items-stretch">
+			        <button class="btn btn-custom-display" type="button">Symptoms</button>
+			      </span>
+          <div class="input-group align-items-stretch">
+            <blockquote class="input-group">
+              {% for symptom in symptoms %}
+              <span>{{ symptom }}, </span>
+              {% endfor %}
+            </blockquote>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+    {% if logged_in_status %}
+    <div class="col-md-offset-1 col-md-5 thumbnail">
+      <h4>Suggested Doctors :</h4>
+      <blockquote>
+        {% for doctor in doctor_list %}
+        <br>
+        <span class="input-group-btn">
+			    <button class="btn btn-custom-display" type="button">{{ doctor.0 }}</button>
+				</span>
+        <input type="text" class="form-control" value="{{ doctor.1 }}" readonly>
+        {% endfor %}
+      </blockquote>
+    </div>
+    {% endif %}
+    <!-- TODO :: Add all other fields and do styling -->
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'data/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="thumbnail col-md-4">
+      <form class="form-group" action="{% url 'data:disease-add' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field.label_tag }} <br>
+        {{ field }}
+        <br>
+        {{ field.errors }}
+        <br>
+        {% endfor %}
+        <div class="justify-content-md-center" align="center">
+          <input class="btn btn-custom btn-md btn-block" type="submit" value="Add">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

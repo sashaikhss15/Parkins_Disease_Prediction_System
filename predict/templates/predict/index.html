@@ -1,0 +1,47 @@
+{% extends 'predict/base.html' %}
+{% block predict_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <form class="form-group" action="#" method="post">
+        {% csrf_token %}
+        <div class="thumbnail">
+          {{ form.patient_name.label_tag }} <br>
+          {{ form.patient_name }}<br>
+          {{ form.patient_username.label_tag }} <br>
+          {{ form.patient_username }}
+          <br>
+          <br>
+          <div class="justify-content-md-center" align="center">
+            <input class="btn btn-custom btn-md btn-block" type="submit" value="Predict">
+          </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <div class="thumbnail">
+        <p id="output">{{ alpha }}</p>
+        Select {{ form.symptoms.label_tag }} <br>
+        {% for error in form.symptoms.errors %}
+        <p class="text-danger lower-error">{{ error }}</p>
+        {% endfor %}
+        <br>
+        <div class="symptoms">
+          {% for value, text in form.symptoms.field.choices %}
+          <div class="">
+            <input id="id_symptoms_{{ forloop.counter0 }}" name="{{ form.symptoms.name }}" type="checkbox"
+                   value="{{ value }}"
+                   {% if value in checked_symptoms %} checked="checked" {% endif %}>
+            <label>{{ text }}</label><br>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <br>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
