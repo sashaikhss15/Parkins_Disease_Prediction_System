@@ -4,7 +4,7 @@ from django.db import models
 
 class PatientProfileModel(models.Model):
     # auth object
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     name = models.CharField(max_length=100, error_messages={'required': 'Please Enter your name'}, default='')
     age = models.IntegerField(blank=True, default=0)
@@ -17,7 +17,7 @@ class PatientProfileModel(models.Model):
     city = models.CharField(max_length=20, default='')
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
 
 class DoctorProfileModel(models.Model):

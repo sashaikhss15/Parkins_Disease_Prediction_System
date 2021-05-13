@@ -1,0 +1,32 @@
+{% extends 'data/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="thumbnail col-md-4">
+      <!-- Delete Album -->
+      <div align="end">
+        <form action="" method="post" style="display: inline;">
+          {% csrf_token %}
+          <!-- <input type="hidden" name="id" value="{{ disease_detail.id }}"/>
+          <h3 class="text-sm-center text-primary">{{ disease_detail.disease_name }}</h3>
+          <hr/>
+          <blockquote><input name="patient" value="{{ disease_detail.patient }}"/></blockquote>
+          <blockquote><input name="fo" value="{{ disease_detail.fo }}"/></blockquote>
+          <blockquote><input name="fhi" value="{{ disease_detail.fhi }}"/></blockquote>
+          <blockquote><input name="flo" value="{{ disease_detail.flo }}"/></blockquote>
+          <blockquote><input name="jitter" value="{{ disease_detail.jitter }}"/></blockquote>
+          <br> -->
+
+
+          <blockquote>{{form.as_p}}</blockquote>
+
+          <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-save-file"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+{% endblock %}

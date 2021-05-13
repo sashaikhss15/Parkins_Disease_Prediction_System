@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Account{% endblock %}</title>
-  {% load staticfiles %}
+  {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
@@ -56,12 +56,18 @@
   <div class="row custom-margin">
     <div class="col-md-6">
       <div class="row justify-content-md-center align-items-md-center ">
-        <a href="{% url 'account:register_patient' %}">
-          <div id="index" class="thumbnail col-md-4" align="center">Patient Registration</div>
-        </a>
-        <a href="{% url 'account:register_doctor' %}">
-          <div id="index" class="thumbnail col-md-offset-2 col-md-4" align="center">Doctor Registration</div>
-        </a>
+        {% if is_user %}
+          <a href="{% url 'account:register_patient' %}">
+            <div id="index" class="thumbnail col-md-10" align="center">Add  Patient</div>
+          </a>
+        {% endif %}
+
+        {% if not is_user %}
+          <a href="{% url 'account:register_doctor' %}">
+            <div id="index" class="thumbnail col-md-10" align="center">Doctor Registration</div>
+          </a>
+        {% endif %}
+
       </div>
       <div class="row justify-content-md-center align-items-md-center ">
         {% if is_user %}
@@ -80,7 +86,7 @@
       <div class="row justify-content-md-center align-items-md-center ">
         {% if is_user %}
           <div id="register" class="thumbnail col justify-content-md-center ">
-            <form action="{% url 'account:index' %}" method="POST">
+            <form action="{% url 'account:doctor_account_index' %}" method="POST">
             <h3>Update <span class="text-info">Profile</span></h3><br>
             {% if error_message %}
                 <p><strong>{{ error_message }}</strong></p>

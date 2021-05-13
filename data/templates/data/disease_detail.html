@@ -5,13 +5,40 @@
     <div class="thumbnail col-md-4">
       <h3 class="text-sm-center text-primary">{{ disease_detail.disease_name }}</h3>
       <hr/>
-      <blockquote><h5>{{ disease_detail.disease_description|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.patient|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.fo|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.fhi|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.flo|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.jitter|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.jitter_abs|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.rap|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.ppq|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.ddp|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.shimmer|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.shimmer_db|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.shimmer_apq3|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.apq|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.dda|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.nhr|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.hnr|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.rpde|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.dfa|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.spread1|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.spread2|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.d2|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.ppe|linebreaks }}</h5></blockquote>
+
       <br>
       <!-- Delete Album -->
       <div align="end">
         <form action="{% url 'data:disease-delete' disease_detail.id %}" method="post" style="display: inline;">
           {% csrf_token %}
           <input type="hidden" name="symptom_id" value="{{ disease_detail.id }}"/>
+
+          <a href="{% url 'data:disease-edit' disease_detail.id %}" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </a>
+
           <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-trash"></span>
           </button>

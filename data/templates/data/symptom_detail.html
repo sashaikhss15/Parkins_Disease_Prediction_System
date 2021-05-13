@@ -5,7 +5,9 @@
     <div class="thumbnail col-md-4">
       <h3 class="text-sm-center text-primary">{{ symptom_detail.symptom_name }}</h3>
       <hr/>
+      <blockquote><h5>{{ symptom_detail.patient|linebreaks }}</h5></blockquote>
       <blockquote><h5>{{ symptom_detail.symptom_description|linebreaks }}</h5></blockquote>
+      <blockquote><h5><a href="{{symptom_detail.voice_clip.url}}" download>{{ symptom_detail.voice_clip|linebreaks }}</a></h5></blockquote>
       <br>
       <!-- Delete Album -->
       <div align="end">

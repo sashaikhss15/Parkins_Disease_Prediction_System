@@ -2,14 +2,19 @@
 import os
 
 import joblib
+import pickle
+import numpy as np
+
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from DPS import settings
 from account.models import PatientProfileModel, DoctorProfileModel
-from predict.forms import PredictForm
-from predict.models import PredictedDiseaseModel, PredictModel
+from data.models import DiseaseModel
+from data.forms import DiseaseAddForm
+from predict.forms import PredictForm, MyPredictForm
+from predict.models import PredictedDiseaseModel, PredictModel, MyPredictModel
 
 
 def is_user_logged_in(request):
@@ -216,3 +221,66 @@ def history(request):
         data.append(my_dict)
         print(f'------ dict = {my_dict}')
     return render(request, 'predict/history.html', {'data': data, })
+
+
+###
+#parkinson_predict
+###
+
+def parkinson_predict(request):
+    if is_user_logged_in(request):
+        print('In predict')
+        print('---- inside GET')
+        form = MyPredictForm
+        return render(request, 'predict/parkinson_predict.html', {'form': form})
+
+def post_parameter_in_model(request):
+    form = MyPredictForm(request.POST)
+    if form.is_valid():
+        parameters_list = []
+        parameters_obj = form.cleaned_data['parameters']
+        print(type(parameters_obj))
+
+        print(type(parameters_obj.patient))
+        print(parameters_obj.id)
+        print(parameters_obj.patient)
+        #instance = MyPredictModel.objects.get(parameters=parameters_obj)
+        #list(Article.objects.values_list('comment_id', flat=True).distinct()
+
+        patientObj = PatientProfileModel.objects.get(id=parameters_obj.patient.id)
+
+        print(type(patientObj.name))
+
+        qs = list(DiseaseModel.objects.filter(id=parameters_obj.id).values_list().distinct())[0]
+        print(qs)
+        for i in qs:
+            if type(i) is float:
+                parameters_list.append(i)
+        
+        print(parameters_list)
+
+
+        #prediction code
+        model_path = '/home/coda/aq_project/disease-prediction-system/finalized_model.pkl'
+        classifier = pickle.load(open(model_path, 'rb'))
+        
+        #prediction = classifier.predict(np.array([[199.228,209.512,192.091,0.00241,1.00E-05,0.00134,0.00138,0.00402,0.01015,0.089,0.00504,0.00641,0.00762,0.01513,0.00167,30.94,0.432439,0.742055,-7.682587,0.173319,2.103106,0.068501]]))[0]
+        prediction = classifier.predict(np.array([parameters_list]))[0]
+        print(type(prediction))
+        print(prediction)
+        form = MyPredictForm
+        parameters_name = ['fo', 'fhi','flo' ,
+        'jitter', 'jitter_abs', 'rap', 'ppq', 'ddp' ,
+        'shimmer', 'shimmer_db', 'shimmer_apq3' ,
+        'shimmer_apq5', 'apq', 'dda', 'nhr' ,
+        'hnr', 'rpde', 'dfa', 'spread1', 'spread2',
+        'd2' , 'ppe']
+        mlist = zip(parameters_name, parameters_list)
+        context = {
+            'form': form,
+            'prediction': prediction,
+            'mlist': mlist,
+            'patient_name': patientObj.name,
+            'is_visible': True
+        }
+        return render(request, 'predict/parkinson_predict.html', context)

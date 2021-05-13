@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Account{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Disease Prediction System</a>
+    </div>
+
+    <!-- Items -->
+    <div class="collapse navbar-collapse" id="topNavBar">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'account:login_user' %}">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+          </a>
+        </li>
+        <li class="active">
+          <a href="{% url 'account:register_patient' %}">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:register_doctor' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:logout_user' %}">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<form class="form-group" role="form" action="" method="post">
+	  <div class="row justify-content-md-center align-items-md-center">
+	      <!-- <div id="register" class="thumbnail col-md-5">
+	        <h3>Patient <span class="text-info">Account</span> Registration</h3><br>
+	        {% if error_message %}
+	            <p><strong>{{ error_message }}</strong></p>
+	        {% endif %}
+          {% csrf_token %}
+          {% for err in form_user.non_field_errors %}
+						<span class="alert-danger">{{ err }}</span>
+          {% endfor %}
+          <div class="row">
+          	<div class="col-md-12">
+		          {% for field in form_user %}
+								<div class="col-sm-offset-2 col-sm-10">
+							    <span class="text-danger small">{{ field.errors }}</span><br>
+							  </div>
+							 	{{ field.label_tag }}&nbsp;<span class="text-info">{{ field.help_text }}</span><br>
+							  {{ field }}
+							{% endfor %}
+						</div>
+				  </div>
+				  <br>
+	      </div> -->
+	      <!-- <div id="register" class="thumbnail col-md-5 justify-content-md-center ">
+	        <h3>Patient <span class="text-info">Profile</span> Registration</h3><br>
+	        {% if error_message %}
+	            <p><strong>{{ error_message }}</strong></p>
+	        {% endif %}
+          {% csrf_token %}
+          {% for err in form_profile.non_field_errors %}
+							<span class="alert-danger">{{ err }}</span>
+          {% endfor %}
+						<div class="row">
+          	<div class="col-md-12">
+		          {% for field in form_profile %}
+								<div class="col-sm-offset-2 col-sm-10">
+							    <span class="text-danger small">{{ field.errors }}</span><br>
+							  </div>
+							 	{{ field.label_tag }}&nbsp;<span class="text-info">{{ field.help_text }}</span><br>
+							  {{ field }}
+							{% endfor %}
+						</div>
+				  </div>
+				  <br>
+				  <br>
+				  <div class="justify-content-md-center" align="center">
+	          <input class="btn btn-custom btn-md btn-block" type="submit" value="Create Account & Profile">
+	        </div>
+	      </div> -->
+
+
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="thumbnail col-md-4">
+              <h3 class="text-sm-center">Patients</h3>
+              <h5 class="text-sm-center text-info">&nbsp;Total : {{ count }}</h5><br>
+              <ol>
+                {% for patient in patients %}
+                <li>
+                  <h5>
+                    <a class="link-none" href="{% url 'account:patient_details' patient.id %}">{{ patient.name }}</a>
+                  </h5>
+                </li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+        </div>
+
+
+	  </div>
+	  </form>
+	  <br>
+	</div>
+</body>
+</html>

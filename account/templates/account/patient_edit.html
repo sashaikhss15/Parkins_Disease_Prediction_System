@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Account{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Disease Prediction System</a>
+    </div>
+
+    <!-- Items -->
+    <div class="collapse navbar-collapse" id="topNavBar">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'account:login_user' %}">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+          </a>
+        </li>
+        <li class="active">
+          <a href="{% url 'account:register_patient' %}">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:register_doctor' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account:logout_user' %}">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="thumbnail col-md-4">
+              <!-- Delete Album -->
+              <div align="end">
+                <form action="" method="post" style="display: inline;">
+                  {% csrf_token %}
+
+<!--                   <input type="hidden" name="id" value="{{ patient_detail.id }}"/>
+                  <h3 class="text-sm-center text-primary">{{ patient_detail.name }}</h3>
+                  <hr/>
+                  <blockquote><input name="name" value="{{ patient_detail.name }}"/></blockquote>
+                  <blockquote><input name="height" value="{{ patient_detail.height }}"/></blockquote>
+                  <blockquote><input name="age" value="{{ patient_detail.age }}"/></blockquote>
+                  <blockquote><input name="gender" value="{{ patient_detail.gender }}"/></blockquote>
+                  <blockquote><input name="weight" value="{{ patient_detail.weight }}"/></blockquote>
+                  <br> -->
+
+                  <blockquote>{{form.as_p}}</blockquote>
+
+                  <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-save-file"></span>
+                  </button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+
+
+</body>
+</html>

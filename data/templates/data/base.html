@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Title{% endblock %}</title>
-  {% load staticfiles %}
+  {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{% static 'data/style.css' %}"/>
@@ -29,23 +29,28 @@
     <div class="collapse navbar-collapse" id="topNavBar">
       <ul class="nav navbar-nav navbar-right">
         <li>
+          <a href="{% url 'data:index' %}">
+            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>&nbsp; Data
+          </a>
+        </li>
+        <li>
           <a href="{% url 'data:symptom-add' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Symptoms
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Voice Sample
           </a>
         </li>
         <li>
           <a href="{% url 'data:symptoms-list' %}">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Symptoms
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Voice Sample
           </a>
         </li>
         <li>
           <a href="{% url 'data:disease-add' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Disease
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Parameter
           </a>
         </li>
         <li>
           <a href="{% url 'data:diseases-list' %}">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Disease
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Parameter
           </a>
         </li>
         <li>

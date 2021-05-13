@@ -9,7 +9,7 @@
         {% for symptom in symptoms %}
         <li>
           <h5>
-            <a class="link-none" href="{% url 'data:symptom-details' symptom.id %}">{{ symptom.symptom_name }}</a>
+            <a class="link-none" href="{% url 'data:symptom-details' symptom.id %}">{{ symptom.patient }}</a>
           </h5>
         </li>
         {% endfor %}

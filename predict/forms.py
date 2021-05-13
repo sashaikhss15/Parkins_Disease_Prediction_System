@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import PredictModel, PredictedDiseaseModel
+from .models import PredictModel, PredictedDiseaseModel, MyPredictModel
 
 
 class PredictForm(forms.ModelForm):
@@ -26,3 +26,8 @@ class PredictedDiseaseForm(forms.ModelForm):
             'approved_by': forms.TextInput(attrs={'!required': '', }),
             'rejected_by': forms.TextInput(attrs={'!required': '', })
         }
+
+class MyPredictForm(forms.ModelForm):
+    class Meta:
+        model = MyPredictModel
+        fields = '__all__'

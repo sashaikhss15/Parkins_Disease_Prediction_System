@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Predict</title>
-  {% load staticfiles %}
+  {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{% static 'predict/style.css' %}"/>
@@ -31,9 +31,8 @@
       <ul class="nav navbar-nav navbar-left">
         <li class="{% block predict_active %}{% endblock %}">
           {% if is_doctor %}
-          <a href="{% url 'predict:approvals' %}">Approvals</a>
-          {% else %}
-          <a href="{% url 'predict:index' %}">Predict</a>
+            <!-- <a href="{% url 'predict:approvals' %}">Approvals</a> -->
+            <a href="">Predicts</a>
           {% endif %}
         </li>
         <li class="{% block history_active %}{% endblock %}">

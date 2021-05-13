@@ -20,6 +20,8 @@ from . import views
 app_name = 'predict'
 
 urlpatterns = [
+    path('parkinson-predict/', views.parkinson_predict, name="parkinson_predict"),
+    path('post-parameter-in-model/', views.post_parameter_in_model, name="post_parameter_in_model"),
     path('', views.index, name="index"),
     path('history/', views.history, name="history"),
     path('<int:predict_model_id>/result/', views.result, name="result"),

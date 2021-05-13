@@ -1,0 +1,116 @@
+<table cellspacing=0 cellpadding="2" border=0 style="width:3.8in"> 
+<thead> 
+<tr> 
+<th colspan="3"> 
+Packing Slip 
+</th> 
+</tr> 
+</thead> 
+<tbody> 
+<tr> 
+<td colspan="2" class="store-info"> 
+<div class="company-name">[Store Company Name]</div> 
+<div>[Ship From Address]</div> 
+</td> 
+<td align="right" valign="top"> 
+<img src="http://src.shipstation.com/150/60/http://images.shipstation.com/[Store Logo]" /> 
+</td> 
+</tr> 
+<tr> 
+<td style="height:0.15in"></td> 
+</tr> 
+<tr> 
+<td align="right" style="width:0.5in"> 
+<b>Ship To:</b> 
+</td> 
+<td style="width:1.5in;"> 
+<div>[Recipient Name]</div> 
+<div>[Recipient Company]</div> 
+<div>[Recipient Address]</div> 
+</td> 
+<td style="width:1.2in"> 
+<table cellspacing="0" border="0" class="order-info"> 
+<tr> 
+<td align="right" nowrap class="label first">Order #</td> 
+<td >[Order #]</td> 
+</tr> 
+<tr> 
+<td align="right" nowrap class="label first">Rx #</td> 
+<td ><[Custom Field #1]</td> 
+</tr> 
+<tr> 
+<td align="right" class="label">Date</td> 
+<td>[Order Date]</td> 
+</tr> 
+<tr> 
+<td align="right" class="label">User</td> 
+<td>[Username]</td> 
+</tr> 
+<tr> 
+<td align="right" class="label last" nowrap>Ship Date</td> 
+<td>[Ship Date]</td> 
+</tr> 
+</table> 
+</td> 
+</tr> 
+</tbody> 
+</table>
+
+
+
+<tr>
+		<th align=left style=width:0.75in class=sku>Item</th>
+		<th align=left>Description</th>
+		<th align=right style=width:0.5in class=price>Price</th>
+		<th align=center style=width:0.35in>Qty</th>
+		<th align=center class=location_ssreserved>Location</th>
+		<th align=right style=width:0.55in class=price>Ext. Price</th>
+</tr>
+
+
+
+
+<tr>
+		<td class=sku>[Sku]</td>
+		<td>[Item Title]<br>[Item Options]</td>
+		<td align=right class=price>[Unit Price]</td>
+		<td align=center>[Quantity]</td>
+		<td align=center class=location_ssreserved>[Product Location]</td>
+		<td align=right class=price>[Extended Price]</td>
+</tr>
+
+
+
+<table cellspacing=0 cellpadding="2" border="0" style="width:100%" class="footer">
+<tbody>
+	<tr>
+		<td rowspan="4" class="notes" >
+			[Notes to Buyer]
+		</td>
+		<td align="right" style="width:1in" class="label price">
+			Sub Total:
+		</td>
+		<td style="width:0.75in" align="right" class="price">[Items Total]</td>
+	</tr>
+	<tr class="tax">
+		<td align="right" class="label price">
+			Tax: 
+		</td>
+		<td style="width:0.75in" align="right" class="price">[Tax Paid]</td>
+	</tr>
+	<tr>
+		<td align="right" class="label price">
+			Shipping: 
+		</td>
+		<td style="width:0.75in" align="right" class="price">[Shipping Paid]</td>
+	</tr>
+	<tr>
+		<td align="right" class="label price">
+			Total:
+		</td>
+		<td style="width:0.75in" align="right" class="price">[Order Total]</td>
+	</tr>
+</tbody>
+</table>
+<p><i>[Packing Slip Message]</i></p>
+<p align="center"><barcode size="x-small">[Barcode]</barcode></p>

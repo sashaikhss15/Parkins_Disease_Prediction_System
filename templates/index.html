@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>DPS</title>
-  {% load staticfiles %}
+  {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
@@ -25,8 +25,8 @@
       <div class="thumbnail col-md-offset-1 col-md-3" align="center">View Data</div>
     </a>
     {% if is_doctor %}
-      <a href="{% url 'predict:approvals' %}">
-        <div class="thumbnail col-md-offset-4 col-md-3" align="center">Approvals</div>
+      <a href="{% url 'predict:parkinson_predict' %}">
+        <div class="thumbnail col-md-offset-4 col-md-3" align="center">Predict</div>
       </a>
     {% else %}
       <a href="{% url 'predict:index' %}">
@@ -38,7 +38,7 @@
     <a href="{% url 'admin:index' %}">
       <div class="thumbnail col-md-offset-1 col-md-3" align="center">Admin</div>
     </a>
-    <a href="{% url 'account:index' %}">
+    <a href="{% url 'account:doctor_account_index' %}">
       <div class="thumbnail col-md-offset-4 col-md-3" align="center">Account</div>
     </a>
   </div>

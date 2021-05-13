@@ -40,4 +40,6 @@ urlpatterns = [
     path('disease-detail/<int:disease_id>/delete/', views.disease_delete, name="disease-delete"),
     # /data/disease-detail/12/
     path('disease-detail/<int:disease_id>/', views.disease_detail, name="disease-details"),
+    # /data/disease-edit/11/
+    path('disease-edit/<int:disease_id>/', views.disease_edit, name="disease-edit"),
 ]

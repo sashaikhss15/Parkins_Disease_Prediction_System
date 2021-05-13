@@ -1,0 +1,95 @@
+{% extends 'predict/base.html' %}
+{% block predict_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <form class="form-group" action="{% url 'predict:post_parameter_in_model' %}" method="post">
+        {% csrf_token %}
+        <div class="thumbnail">
+          {% csrf_token %}
+          {% for field in form %}
+            {{ field.label_tag }} <br>
+            {{ field }}
+          <br>
+          {{ field.errors }}
+          <br>
+          {% endfor %}
+          <br>
+          <br>
+          <div class="justify-content-md-center" align="center">
+            <input class="btn btn-custom btn-md btn-block" type="submit" value="Parkinson Predict">
+          </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <div class="thumbnail">
+        <p id="output">{{ alpha }}</p>
+        Prediction Result: {{ form.symptoms.label_tag }} <br>
+        {% for error in form.symptoms.errors %}
+        <p class="text-danger lower-error">{{ error }}</p>
+        {% endfor %}
+        <br>
+        <div class="symptoms">
+          {% for value, text in form.symptoms.field.choices %}
+          <div class="">
+            <input id="id_symptoms_{{ forloop.counter0 }}" name="{{ form.symptoms.name }}" type="checkbox"
+                   value="{{ value }}"
+                   {% if value in checked_symptoms %} checked="checked" {% endif %}>
+            <label>{{ text }}</label><br>
+          </div>
+          {% endfor %}
+
+
+
+          {% if is_visible is not None %}
+              <table border="1">
+                <thead>
+                  <tr>
+                    <th>Patient Name</th>
+                    <th>Parkinson</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{ patient_name }}</td>
+                      {% if prediction %}
+                        <td>Yes</td>
+                      {% else %}
+                        <td>No</td>
+                      {% endif %}
+                    </tr>
+                </tbody>
+              </table>
+
+              <br><br><br><label>Parameters: </label><br>
+
+                <table border="1">
+                  <thead>
+                    <tr>
+                      <th>Parameter Name</th>
+                      <th>Parameter Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item1, item2 in mlist %}
+                      <tr>
+                        <td>{{ item1 }}</td>
+                        <td>{{ item2 }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          {% else %}
+            <label>Please Select Patient</label><br>
+          {% endif %}
+
+        </div>
+
+        <br>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

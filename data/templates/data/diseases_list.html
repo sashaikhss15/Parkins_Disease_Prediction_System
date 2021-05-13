@@ -9,7 +9,7 @@
         {% for disease in diseases %}
         <li>
           <h5>
-            <a class="link-none" href="{% url 'data:disease-details' disease.id %}">{{ disease.disease_name }}</a>
+            <a class="link-none" href="{% url 'data:disease-details' disease.id %}">{{ disease.patient }}</a>
           </h5>
         </li>
         {% endfor %}

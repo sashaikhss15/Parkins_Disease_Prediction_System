@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import SymptomAddForm, DiseaseAddForm
+from .forms import SymptomAddForm, DiseaseAddForm, DiseaseEditForm
 from .models import SymptomModel, DiseaseModel
 
 
@@ -21,7 +21,7 @@ def symptoms_list(request):
 def symptom_add(request):
     if request.method == 'POST':
         print('---- inside POST')
-        form = SymptomAddForm(request.POST)
+        form = SymptomAddForm(request.POST, request.FILES)
         if form.is_valid():
             print('---- for is valid and ready to save')
             form.save()
@@ -72,6 +72,9 @@ def disease_detail(request, disease_id):
     disease_data = get_object_or_404(DiseaseModel, pk=disease_id)
     return render(request, 'data/disease_detail.html', {'disease_detail': disease_data})
 
+def disease_predict(request, disease_id):
+    disease_data = get_object_or_404(DiseaseModel, pk=disease_id)
+
 
 def disease_delete(request, disease_id):
     disease = DiseaseModel.objects.get(pk=disease_id)
@@ -79,3 +82,15 @@ def disease_delete(request, disease_id):
     diseases = DiseaseModel.objects.all()
     return redirect('data:diseases-list')
     # return render(request, 'data/diseases_list.html', {'diseases': diseases, 'count': DiseaseModel.objects.count()})
+
+def disease_edit(request, disease_id):
+    if request.method == 'POST':
+        disease_data = get_object_or_404(DiseaseModel, pk=disease_id)
+        form = DiseaseEditForm(request.POST, instance=disease_data)
+        if form.is_valid():
+            form.save()
+            return redirect('data:diseases-list')
+    else:
+        disease_data = get_object_or_404(DiseaseModel, pk=disease_id)
+        form = DiseaseEditForm(instance=disease_data)
+    return render(request, 'data/disease_edit.html', {'form': form})

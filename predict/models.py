@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from multiselectfield import MultiSelectField
 
+from data.models import DiseaseModel
 
 class PredictModel(models.Model):
     Symptoms = [
@@ -163,3 +164,14 @@ class PredictedDiseaseModel(models.Model):
 
     def __str__(self):
         return f'{self.predict_model} - {self.disease_name} - {self.prediction_confidence}'
+
+
+class MyPredictModel(models.Model):
+    parameters = models.ForeignKey(DiseaseModel, on_delete=models.CASCADE, null=True, blank=True)
+    # is_parkinson
+
+#
+# class ParkinResultModel(models.Model):
+#     # DiseaseModel
+#     # is_parkinson
+
