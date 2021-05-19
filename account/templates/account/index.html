@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>{% block title %}Account{% endblock %}</title>
   {% load static %}
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -22,27 +25,27 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index' %}">Disease Prediction System</a>
+      <a class="navbar-brand" href="{% url 'index' %}">Parkinson Detection System</a>
     </div>
 
     <!-- Items -->
     <div class="collapse navbar-collapse" id="topNavBar">
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <!-- <li>
           <a href="{% url 'account:login_user' %}">
             <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
           </a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a href="{% url 'account:register_patient' %}">
             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
           </a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a href="{% url 'account:register_doctor' %}">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="{% url 'account:logout_user' %}">
             <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
@@ -72,7 +75,7 @@
       <div class="row justify-content-md-center align-items-md-center ">
         {% if is_user %}
           <a href="{% url 'account:logout_user' %}">
-            <div id="index" class="thumbnail  col-md-10" align="center">Logout</div>
+            <div id="index" class="thumbnail  col-md-10" align="center">View Patient</div>
           </a>
         {% else %}
           <a href="{% url 'account:login_user' %}">
