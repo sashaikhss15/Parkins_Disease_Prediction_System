@@ -1,13 +1,53 @@
 {% extends 'data/base.html' %}
 {% block body %}
-<div class="container">
+
+
+<!-- <div class="container">
+  <div class="row justify-content-md-center">
+      <div class="thumbnail col-md-4">
+        <form class="form-group" action="{% url 'data:disease-get' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% for field in form %}
+            {% if field.name == 'patient' %}
+              {{ field.label_tag }}
+              {{ field }}
+              <br>
+              <br>
+            {% elif field.name == 'parameters_file'%}
+              {{ field.label_tag }}
+              {{ field }}
+              <br>
+            {% endif %}
+          {% endfor %}
+          <input class="btn btn-custom btn-md btn-block" type="submit" value="Fill Form">
+        </form>
+      </div>
+  </div>
+</div> -->
+
+<!-- <div class="container">
   <div class="row justify-content-md-center">
     <div class="thumbnail col-md-4">
-      <form class="form-group" action="{% url 'data:disease-add' %}" method="post">
+
+      {% if instance.id is not None %}
+        <form class="form-group" action="{% url 'data:disease-update' instance.id %}" method="post">
+      {% else %}
+        <form class="form-group" action="{% url 'data:disease-add' %}" method="post">
+      {% endif %}
+
         {% csrf_token %}
+
         {% for field in form %}
-        {{ field.label_tag }} <br>
-        {{ field }}
+          {% if field.name == 'parameters_file'  %}
+            <span style="float: right; margin-top: -73px;"> {{ field.label_tag }} 
+              <a href="{% url 'data:disease-get' %}"  class="btn btn-custom btn-md btn-block"> Fill Form </a>
+            </span>
+          {% else %}
+            {{ field.label_tag}}
+            <br>
+            {{ field }}
+          {% endif %}
+
         <br>
         {{ field.errors }}
         <br>
@@ -18,5 +58,75 @@
       </form>
     </div>
   </div>
+</div> -->
+
+
+
+ <div style="width: 100%; overflow: hidden;">
+
+     <div style="width: 600px; margin-left: 150px; float: left;">
+        <div class="container">
+          <div class="row justify-content-md-center">
+              <div class="thumbnail col-md-4">
+                <form class="form-group" action="{% url 'data:disease-get' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {% for field in form %}
+                    {% if field.name == 'patient' %}
+                      {{ field.label_tag }}
+                      {{ field }}
+                      <br>
+                      <br>
+                    {% elif field.name == 'parameters_file'%}
+                      {{ field.label_tag }}
+                      {{ field }}
+                      <br>
+                    {% endif %}
+                  {% endfor %}
+                  <input class="btn btn-custom btn-md btn-block" type="submit" value="Fill Form">
+                </form>
+              </div>
+          </div>
+        </div>
+     </div>
+
+
+     <div style="margin-left: 620px;">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="thumbnail col-md-4">
+
+                {% if instance.id is not None %}
+                  <form class="form-group" action="{% url 'data:disease-update' instance.id %}" method="post">
+                {% else %}
+                  <form class="form-group" action="{% url 'data:disease-add' %}" method="post">
+                {% endif %}
+
+                  {% csrf_token %}
+
+                  {% for field in form %}
+                    {% if field.name == 'parameters_file'  %}
+                      <!-- <span style="float: right; margin-top: -73px;"> {{ field.label_tag }}  -->
+                        <!-- <a href="{% url 'data:disease-get' %}"  class="btn btn-custom btn-md btn-block"> Fill Form </a> -->
+                      <!-- </span> -->
+                    {% else %}
+                      {{ field.label_tag}}
+                      <br>
+                      {{ field }}
+                    {% endif %}
+
+                  <br>
+                  {{ field.errors }}
+                  <br>
+                  {% endfor %}
+                  <div class="justify-content-md-center" align="center">
+                    <input class="btn btn-custom btn-md btn-block" type="submit" value="Add">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+     </div>
 </div>
+
+
 {% endblock %}
