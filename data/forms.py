@@ -21,7 +21,7 @@ class SymptomAddForm(forms.ModelForm):
 class DiseaseAddForm(forms.ModelForm):
     class Meta:
         model = DiseaseModel
-        fields = ['id','patient', 'fo', 'fhi', 'flo', 'jitter',
+        fields = ['id','patient', 'parameters_file', 'fo', 'fhi', 'flo', 'jitter',
             'jitter_abs', 'rap', 'ppq', 'ddp', 'shimmer',
             'shimmer_db', 'shimmer_apq3', 'shimmer_apq5',
             'apq', 'dda', 'nhr', 'hnr', 'rpde', 'dfa',

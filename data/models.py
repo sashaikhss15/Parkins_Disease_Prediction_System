@@ -41,6 +41,7 @@ class DiseaseModel(models.Model):
     spread2 = models.FloatField(null=True, blank=True)
     d2 = models.FloatField(null=True, blank=True)
     ppe = models.FloatField(null=True, blank=True)
+    parameters_file = models.FileField(upload_to='parameters_files/', null=True, blank=True)
 
     def __str__(self):
         return self.patient.name

@@ -42,4 +42,9 @@ urlpatterns = [
     path('disease-detail/<int:disease_id>/', views.disease_detail, name="disease-details"),
     # /data/disease-edit/11/
     path('disease-edit/<int:disease_id>/', views.disease_edit, name="disease-edit"),
+
+    path('disease-get/', views.disease_get, name='disease-get'),
+
+    path('disease-update/<int:instance_id>/', views.disease_update, name='disease-update')
+
 ]

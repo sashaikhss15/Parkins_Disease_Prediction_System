@@ -18,7 +18,18 @@
           <br> -->
 
 
-          <blockquote>{{form.as_p}}</blockquote>
+        {% for field in form %}
+          {% if field.name == 'parameters_file'  %}
+            <!-- <span style="float: right; margin-top: -73px;"> {{ field.label_tag }}  -->
+              <!-- <a href="{% url 'data:disease-get' %}"  class="btn btn-custom btn-md btn-block"> Fill Form </a> -->
+            <!-- </span> -->
+          {% else %}
+            {{ field.label_tag}}
+            {{ field }}
+            <br>
+            <br>
+          {% endif %}
+        {% endfor %}
 
           <button type="submit" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-save-file"></span>

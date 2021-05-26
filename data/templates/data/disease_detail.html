@@ -4,7 +4,7 @@
   <div class="row justify-content-md-center">
     <div class="thumbnail col-md-4">
       <h3 class="text-sm-center text-primary">{{ disease_detail.disease_name }}</h3>
-      <hr/>
+      <!-- <hr/>
       <blockquote><h5>{{ disease_detail.patient|linebreaks }}</h5></blockquote>
       <blockquote><h5>{{ disease_detail.fo|linebreaks }}</h5></blockquote>
       <blockquote><h5>{{ disease_detail.fhi|linebreaks }}</h5></blockquote>
@@ -26,7 +26,24 @@
       <blockquote><h5>{{ disease_detail.spread1|linebreaks }}</h5></blockquote>
       <blockquote><h5>{{ disease_detail.spread2|linebreaks }}</h5></blockquote>
       <blockquote><h5>{{ disease_detail.d2|linebreaks }}</h5></blockquote>
-      <blockquote><h5>{{ disease_detail.ppe|linebreaks }}</h5></blockquote>
+      <blockquote><h5>{{ disease_detail.ppe|linebreaks }}</h5></blockquote> -->
+
+      <label>Patient Name:</label>
+      {{ disease_detail.patient|linebreaks }}
+        <br>
+
+      {% for field in form %}
+        {% if not field.name == 'parameters_file'  %}
+          {{ field.label_tag }}
+          <br>
+          {{ field.value }}
+          <br>
+          <br>
+        {% endif %}
+      {% endfor %}
+
+
+
 
       <br>
       <!-- Delete Album -->
