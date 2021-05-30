@@ -73,11 +73,14 @@
 
       </div>
       <div class="row justify-content-md-center align-items-md-center ">
+        
         {% if is_user %}
-          <a href="{% url 'account:logout_user' %}">
+          <a href="{% url 'account:patient_list' %}">
             <div id="index" class="thumbnail  col-md-10" align="center">View Patient</div>
           </a>
-        {% else %}
+        {% endif %}
+
+        {% if not is_user %}
           <a href="{% url 'account:login_user' %}">
             <div id="index" class="thumbnail  col-md-10" align="center">Login</div>
           </a>

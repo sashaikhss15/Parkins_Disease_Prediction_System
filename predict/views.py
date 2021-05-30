@@ -9,6 +9,14 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+import xhtml2pdf.pisa as pisa
+
+
+from django.views.generic import View
+
 from DPS import settings
 from account.models import PatientProfileModel, DoctorProfileModel
 from data.models import DiseaseModel
@@ -234,11 +242,15 @@ def parkinson_predict(request):
         form = MyPredictForm
         return render(request, 'predict/parkinson_predict.html', {'form': form})
 
+import base64
+import pdfkit
+from django.core.files.uploadedfile import SimpleUploadedFile
 def post_parameter_in_model(request):
     form = MyPredictForm(request.POST)
     if form.is_valid():
         parameters_list = []
         parameters_obj = form.cleaned_data['parameters']
+        p = form.save()
         print(type(parameters_obj))
 
         print(type(parameters_obj.patient))
@@ -258,7 +270,7 @@ def post_parameter_in_model(request):
                 parameters_list.append(i)
         
         print(parameters_list)
-
+        c = parameters_list
 
         #prediction code
         model_path = '/home/coda/aq_project/disease-prediction-system/finalized_model.pkl'
@@ -268,7 +280,7 @@ def post_parameter_in_model(request):
         prediction = classifier.predict(np.array([parameters_list]))[0]
         print(type(prediction))
         print(prediction)
-        form = MyPredictForm
+        # form = MyPredictForm
         parameters_name = ['fo', 'fhi','flo' ,
         'jitter', 'jitter_abs', 'rap', 'ppq', 'ddp' ,
         'shimmer', 'shimmer_db', 'shimmer_apq3' ,
@@ -276,11 +288,124 @@ def post_parameter_in_model(request):
         'hnr', 'rpde', 'dfa', 'spread1', 'spread2',
         'd2' , 'ppe']
         mlist = zip(parameters_name, parameters_list)
+        patient_details = ['age', 'gender', 'height', 'weight']
+        patient_values = [patientObj.age, patientObj.gender,
+                        patientObj.height, patientObj.weight]
+        pv = patient_values
+        pc = zip(parameters_name, c)
+        datalist = zip(patient_details, patient_values)
+        datalist_copy = zip(patient_details, pv)
+        # context = {
+        #     'form': form,
+        #     'prediction': prediction,
+        #     'mlist': mlist,
+        #     'patient_name': patientObj.name,
+        #     'datalist': datalist,
+        #     'is_visible': True
+        # }
+        
+        pdf_base64 = None
+        template = get_template("report.html")
+        options = {"enable-local-file-access": None, "page-size": "letter"}
+        html = template.render({
+            'mlist': pc,
+            'prediction': prediction,
+            'patient_name': patientObj.name,
+            'datalist': datalist_copy
+            })
+        pdf = pdfkit.from_string(html, "", options=options)
+        print(pdf)
+        print(type(pdf))
+
+        pdf_base64 = base64.b64encode(pdf)
+        pdf_obj = {}
+        pdf_obj['name'] = '{}_report.pdf'.format(patientObj.name)
+        pdf_obj['file'] = pdf_base64
+        pdf_obj['content_type'] = 'application/pdf'
+        pdf_url = decode_base64_file(pdf_obj)
+        p.report_file = pdf_url
+        print(pdf_url)
+        p.save()
+        # form = MyPredictForm()
         context = {
             'form': form,
             'prediction': prediction,
             'mlist': mlist,
             'patient_name': patientObj.name,
-            'is_visible': True
+            'datalist': datalist,
+            'is_visible': True,
+            'p': p
         }
         return render(request, 'predict/parkinson_predict.html', context)
+
+
+def decode_base64_file(base64_object):
+    if base64_object != {}:
+        try:
+            lens = len(base64_object["file"])
+            lenx = lens - (lens % 4 if lens % 4 else 4)
+            decoded_file = SimpleUploadedFile(
+                base64_object['name'],
+                base64.b64decode(base64_object["file"][:lenx]),
+                base64_object["content_type"]
+            )
+            return decoded_file
+        except Exception as e:
+            print("file exception", e)
+            return Response({"detail": "Please pass the valid base64 object "
+                                       "into the request."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+    return None
+
+
+
+class Render:
+
+    @staticmethod
+    def render(path: str, params: dict):
+        template = get_template(path)
+        html = template.render(params)
+        response = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), response)
+        if not pdf.err:
+            return HttpResponse(response.getvalue(), content_type='application/pdf')
+        else:
+            return HttpResponse("Error Rendering PDF", status=400)
+
+
+class Pdf(View):
+
+    def get(self, request):
+        print("In pdf")
+        params = {
+            'request': request
+        }
+        return Render.render('report.html', params)
+
+
+import urllib
+from django import template
+register = template.Library()
+
+@register.filter
+def get_encoded_dict(data_dict):
+    print(data_dict)
+    return urllib.urlencode(data_dict)
+
+
+def print_invoices(self, request):
+    multiple_ids = request.query_params.get("multiple_invoices_uuid").split(",")
+    invoices = self.get_queryset().filter(uuid__in=multiple_ids)
+    pdf_base64 = None
+    if invoices:
+        template = get_template("invoice.html")
+        options = {"enable-local-file-access": None, "page-size": "letter"}
+        html = template.render(
+            {
+                "invoices": invoices,
+            }
+        )
+        pdf = pdfkit.from_string(html, "", options=options)
+        pdf_base64 = base64.b64encode(pdf)
+    return Response({"data": pdf_base64})
