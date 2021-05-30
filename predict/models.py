@@ -168,6 +168,8 @@ class PredictedDiseaseModel(models.Model):
 
 class MyPredictModel(models.Model):
     parameters = models.ForeignKey(DiseaseModel, on_delete=models.CASCADE, null=True, blank=True)
+    report_file = models.FileField(
+        upload_to='prediction_report/', null=True, blank=True)
     # is_parkinson
 
 #

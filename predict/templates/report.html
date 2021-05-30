@@ -1,47 +1,12 @@
 {% extends 'predict/base.html' %}
 {% block predict_active %}active{% endblock %}
 {% block body %}
+
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-4">
-      <form class="form-group" action="{% url 'predict:post_parameter_in_model' %}" method="post">
-        {% csrf_token %}
-        <div class="thumbnail">
-          {% csrf_token %}
-          {% for field in form %}
-            {% if field.name != 'report_file'  %}
-              {{ field.label_tag }} <br>
-              {{ field }}
-            {% endif %}
-          <br>
-          {{ field.errors }}
-          {% endfor %}
-          <div class="justify-content-md-center" align="center">
-            <input class="btn btn-custom btn-md btn-block" type="submit" value="Parkinson Predict">
-          </div>
-        </div>
-    </div>
-    <div class="col-md-8">
-      <div class="thumbnail">
-        <p id="output">{{ alpha }}</p>
-        Prediction Result: {{ form.symptoms.label_tag }} <br>
-        {% for error in form.symptoms.errors %}
-        <p class="text-danger lower-error">{{ error }}</p>
-        {% endfor %}
-        <br>
-        <div class="symptoms">
-          {% for value, text in form.symptoms.field.choices %}
-          <div class="">
-            <input id="id_symptoms_{{ forloop.counter0 }}" name="{{ form.symptoms.name }}" type="checkbox"
-                   value="{{ value }}"
-                   {% if value in checked_symptoms %} checked="checked" {% endif %}>
-            <label>{{ text }}</label><br>
-          </div>
-          {% endfor %}
 
 
-
-          {% if is_visible is not None %}
               <table border="1">
                 <thead>
                   <tr>
@@ -60,6 +25,7 @@
                     </tr>
                 </tbody>
               </table>
+
 
               <br><br><br><br>
               <label>Patient Details:</label>
@@ -99,19 +65,6 @@
                   {% endfor %}
                 </tbody>
               </table>
-          {% else %}
-              <p>Please Select Patient</p>
-          {% endif %}
-        </div>
-        <br>
-      </div>
-      </form>
-
-      {% if is_visible is not None %}
-        <div>
-          <a href="{{ p.report_file.url }}" class="btn btn-custom btn-md btn-block" download>Download Report  {{ p.report_file }}</a>
-        </div>
-      {% endif %}
     </div>
   </div>
 </div>

@@ -28,4 +28,5 @@ urlpatterns = [
     path('approvals/', views.approvals, name="approvals"),
     path('approvals/<int:approval_id>/approve/', views.approve, name="approve"),
     path('approvals/<int:reject_id>/reject/', views.reject, name="reject"),
+    path('post-parameter-in-model/render/pdf/', views.Pdf.as_view(), name="report")
 ]
