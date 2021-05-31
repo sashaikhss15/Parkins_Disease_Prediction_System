@@ -1,5 +1,6 @@
 # Create your views here.
 import os
+import datetime
 
 import joblib
 import pickle
@@ -273,7 +274,7 @@ def post_parameter_in_model(request):
         c = parameters_list
 
         #prediction code
-        model_path = '/home/coda/aq_project/disease-prediction-system/finalized_model.pkl'
+        model_path = 'finalized_model.pkl'
         classifier = pickle.load(open(model_path, 'rb'))
         
         #prediction = classifier.predict(np.array([[199.228,209.512,192.091,0.00241,1.00E-05,0.00134,0.00138,0.00402,0.01015,0.089,0.00504,0.00641,0.00762,0.01513,0.00167,30.94,0.432439,0.742055,-7.682587,0.173319,2.103106,0.068501]]))[0]
@@ -311,7 +312,12 @@ def post_parameter_in_model(request):
             'mlist': pc,
             'prediction': prediction,
             'patient_name': patientObj.name,
-            'datalist': datalist_copy
+            'patient_age' : patientObj.age,
+            'patient_gender' : patientObj.gender,
+            'patient_height' : patientObj.height,
+            'patient_weight' : patientObj.weight,
+            'report_date' : datetime.datetime.now(),
+            'datalist': datalist_copy,
             })
         pdf = pdfkit.from_string(html, "", options=options)
         print(pdf)
