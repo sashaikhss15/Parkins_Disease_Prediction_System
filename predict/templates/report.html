@@ -1,8 +1,202 @@
-{% extends 'predict/base.html' %}
-{% block predict_active %}active{% endblock %}
+{% block predict_active %}{% endblock %}
 {% block body %}
 
-<div class="container">
+<html>
+    <head>
+        <title>
+            Test Report
+        </title>
+        <style type="text/css">
+        body{
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        .test-result-table {
+            font-size: large;
+            border: 1px solid black;
+            width: 90%;
+        }
+
+        .test-result-table-header-cell {
+            font-weight: bold;
+            border-bottom: 1px solid black;
+            background-color: silver;
+            text-align: center;
+        }
+
+        .test-result-step-command-cell {
+
+            border-bottom: 1px solid gray;
+            text-align: center;
+            width: 30%;
+        }
+
+        .test-result-step-description-cell {
+
+            border-bottom: 1px solid gray;
+            text-align: center;
+            width: 30%;
+        }
+
+        .test-result-step-result-cell-ok {
+
+            border-bottom: 1px solid gray;
+            background-color: green;
+            text-align: center;
+            width: 30%;
+        }
+
+        .test-result-step-result-cell-failure {
+
+            border-bottom: 1px solid gray;
+            background-color: red;
+            text-align: center;
+            width: 30%;
+        }
+
+        .test-result-step-result-cell-notperformed {
+
+            border-bottom: 1px solid gray;
+            background-color: white;
+        }
+
+        .test-result-describe-cell {
+            background-color: tan;
+            font-style: italic;
+        }
+
+        .test-cast-status-box-ok {
+            border: 1px solid black;
+            float: left;
+            margin-right: 10px;
+            width: 45px;
+            height: 25px;
+            background-color: green;
+        }
+
+        </style>
+    </head>
+    <body>
+    <center>
+        <h1 class="test-results-header">
+            Parkinson Detection Test Report
+        </h1>
+        <br><br>
+        <h2>Patient Details</h2>
+        <table class="test-result-table" cellspacing="0">
+            <thead>
+                <tr>
+                    <td class="test-result-table-header-cell">
+                        Name
+                    </td>
+                    <td class="test-result-table-header-cell">
+                        Gender
+                    </td>
+                    <td class="test-result-table-header-cell">
+                        Age
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="test-result-step-row test-result-step-row-altone">
+                    <td class="test-result-step-command-cell">
+                      {{ patient_name }}
+                    </td>
+                    <td class="test-result-step-description-cell">
+                      {{ patient_age }}
+                    </td>
+                    <td class="test-result-step-description-cell">
+                      {{ patient_gender }}
+                    </td>
+                </tr>
+              </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table class="test-result-table" cellspacing="0">
+          <thead>
+              <tr>
+                  <td class="test-result-table-header-cell">
+                      Height
+                  </td>
+                  <td class="test-result-table-header-cell">
+                      Weight
+                  </td>
+                  <td class="test-result-table-header-cell">
+                      Date and Time of Report
+                  </td>
+              </tr>
+          </thead>
+          <tbody>
+            <tr class="test-result-step-row test-result-step-row-altone">
+              <td class="test-result-step-command-cell">
+                {{ patient_height }}
+              </td>
+              <td class="test-result-step-description-cell">
+                {{ patient_weight }}
+              </td>
+              <td class="test-result-step-description-cell">
+                {{ report_date }}
+              </td>
+            </tr>
+          </tbody>
+      </table>
+      <br><br>
+        <h2>Voice Analysis Result</h2>
+      <table class="test-result-table" cellspacing="0">
+        <thead>
+            <tr>
+                <td class="test-result-table-header-cell">
+                    Voice Parameter
+                </td>
+                <td class="test-result-table-header-cell">
+                    Value
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+          {% for parameter_name,paramter_value in mlist %}
+            <tr class="test-result-step-row test-result-step-row-altone">
+              <td class="test-result-step-command-cell">
+                {{ parameter_name }}
+              </td>
+              <td class="test-result-step-description-cell">
+                {{ paramter_value }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    <br><br><br>
+    <table class="test-result-table" cellspacing="0">
+      <thead>
+        <tr>
+            <td class="test-result-table-header-cell" colspan="2">
+                Result
+            </td>
+        </tr>
+    </thead>
+      <tbody>
+        <tr class="test-result-step-row test-result-step-row-altone">
+            <td class="test-result-step-command-cell">
+              Parkinson Detected
+            </td> 
+            {% if prediction %}
+                <td class="test-result-step-result-cell-failure"><b>Yes</b></td>
+            {% else %}
+                <td class="test-result-step-result-cell-ok"><b>No</b></td>
+            {% endif %}
+        </tr>
+    </tbody>
+  </table>
+    </center>
+    </body>
+</html>
+
+{% endblock %}
+
+<!-- <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-4">
 
@@ -67,5 +261,4 @@
               </table>
     </div>
   </div>
-</div>
-{% endblock %}
+</div>-->
