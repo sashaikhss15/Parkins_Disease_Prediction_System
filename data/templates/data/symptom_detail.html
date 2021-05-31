@@ -4,11 +4,25 @@
   <div class="row justify-content-md-center">
     <div class="thumbnail col-md-4">
       <h3 class="text-sm-center text-primary">{{ symptom_detail.symptom_name }}</h3>
-      <hr/>
-      <blockquote><h5>{{ symptom_detail.patient|linebreaks }}</h5></blockquote>
-      <blockquote><h5>{{ symptom_detail.symptom_description|linebreaks }}</h5></blockquote>
+      
+      <!-- <blockquote><h5></h5></blockquote>
+      <blockquote><h5>{{ symptom_detail.description|linebreaks }}</h5></blockquote>
       <blockquote><h5><a href="{{symptom_detail.voice_clip.url}}" download>{{ symptom_detail.voice_clip|linebreaks }}</a></h5></blockquote>
-      <br>
+      <br> -->
+
+      <label>Patient Name:</label>
+      {{ symptom_detail.patient|linebreaks }}
+
+      {% for field in form %}
+          {% if field.name != 'patient'  %}
+            {{ field.label_tag }}
+            <br>
+            {{ field.value }}
+            <br>
+            <br>
+          {% endif %}
+      {% endfor %}
+
       <!-- Delete Album -->
       <div align="end">
         <form action="{% url 'data:symptom-delete' symptom_detail.id %}" method="post" style="display: inline;">

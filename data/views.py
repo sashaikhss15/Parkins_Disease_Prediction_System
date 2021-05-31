@@ -38,7 +38,12 @@ def symptom_add(request):
 
 def symptom_detail(request, symptom_id):
     symptom_data = get_object_or_404(SymptomModel, pk=symptom_id)
-    return render(request, 'data/symptom_detail.html', {'symptom_detail': symptom_data})
+    form = SymptomAddForm(instance=symptom_data)
+    context = {
+        'symptom_detail': symptom_data,
+        'form': form
+    }
+    return render(request, 'data/symptom_detail.html', context)
 
 
 def symptom_delete(request, symptom_id):

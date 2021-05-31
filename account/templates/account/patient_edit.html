@@ -28,21 +28,21 @@
     <!-- Items -->
     <div class="collapse navbar-collapse" id="topNavBar">
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <!-- <li>
           <a href="{% url 'account:login_user' %}">
             <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
           </a>
-        </li>
-        <li class="active">
-          <a href="{% url 'account:register_patient' %}">
+        </li> -->
+        <li>
+          <a href="{% url 'account:patient_list' %}">
             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="{% url 'account:register_doctor' %}">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="{% url 'account:logout_user' %}">
             <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
@@ -56,9 +56,9 @@
       
         <div class="container">
           <div class="row justify-content-md-center">
-            <div class="thumbnail col-md-4">
+            <div id="register" class="thumbnail col-md-4">
               <!-- Delete Album -->
-              <div align="end">
+              
                 <form action="" method="post" style="display: inline;">
                   {% csrf_token %}
 
@@ -72,14 +72,19 @@
                   <blockquote><input name="weight" value="{{ patient_detail.weight }}"/></blockquote>
                   <br> -->
 
-                  <blockquote>{{form.as_p}}</blockquote>
+                  {% for field in form %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <br>
+                    <br>
+                  {% endfor %}
 
                   <button type="submit" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-save-file"></span>
                   </button>
 
                 </form>
-              </div>
+              
             </div>
           </div>
           <br>

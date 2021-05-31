@@ -47,9 +47,11 @@
           </a>
         </li> -->
         <li>
-          <a href="{% url 'account:logout_user' %}">
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
-          </a>
+          {% if is_user %}
+            <a href="{% url 'account:logout_user' %}">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
+            </a>
+          {% endif %}
         </li>
       </ul>
     </div>
@@ -120,14 +122,9 @@
             </form>
           </div>
         {% else %}
-          <div id="register" class="thumbnail col justify-content-md-center ">
-             <h4>Patient's <span class="text-info">Registration</span></h4><br>
-             <p class="para-text">Allows Patients to get <span class="text-info">Doctor's suggestion</span> based on location and personalized <span class="text-info">Doctor's approvals</span>.</p>
-             <br>
-             <hr>
-             <br>
+          <div id="register" class="thumbnail col justify-content-md-center " style="font-size: 20px; font-family: 'Verdana', sans-serif;" >
              <h4>Doctor's <span class="text-info">Registration</span></h4><br>
-             <p class="para-text">Allows Doctors to view <span class="text-info">Predictions</span> done by system and can <span class="text-info">Approve</span> or <span class="text-info">Reject</span> them. Patients can consult Doctors by visiting on the registered <span class="text-info">Clinic Address</span> via this platform. </p>
+             <p class="para-text"> <span class="text-info">Predictions</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
         {% endif %}
       </div>

@@ -320,9 +320,6 @@ def post_parameter_in_model(request):
             'datalist': datalist_copy,
             })
         pdf = pdfkit.from_string(html, "", options=options)
-        print(pdf)
-        print(type(pdf))
-
         pdf_base64 = base64.b64encode(pdf)
         pdf_obj = {}
         pdf_obj['name'] = '{}_report.pdf'.format(patientObj.name)
@@ -330,7 +327,6 @@ def post_parameter_in_model(request):
         pdf_obj['content_type'] = 'application/pdf'
         pdf_url = decode_base64_file(pdf_obj)
         p.report_file = pdf_url
-        print(pdf_url)
         p.save()
         # form = MyPredictForm()
         context = {

@@ -5,7 +5,7 @@ from account.models import PatientProfileModel
 # Create your models here.
 class SymptomModel(models.Model):
     symptom_name = models.CharField(max_length=100)
-    symptom_description = models.TextField()
+    description = models.TextField()
     patient = models.ForeignKey(PatientProfileModel, on_delete=models.CASCADE, null=True, blank=True)
     voice_clip = models.FileField(upload_to='voice_clips/', null=True, blank=True)
 
