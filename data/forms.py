@@ -7,11 +7,11 @@ from account.models import PatientProfileModel
 class SymptomAddForm(forms.ModelForm):
     class Meta:
         model = SymptomModel
-        fields = ['patient', 'voice_clip', 'symptom_description',]
+        fields = ['patient', 'voice_clip', 'description',]
         widgets = {
             'patient ': forms.ModelChoiceField(queryset=PatientProfileModel.objects.all()),
             'symptom_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'symptom_description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
         # def __str__(self):
