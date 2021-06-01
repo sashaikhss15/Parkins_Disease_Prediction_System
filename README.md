@@ -5,3 +5,5 @@
 
 #Parkinson_Detection_System
 
+#This system is used to predictt parkinson.
+
