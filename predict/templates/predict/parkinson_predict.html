@@ -17,14 +17,14 @@
           {{ field.errors }}
           {% endfor %}
           <div class="justify-content-md-center" align="center">
-            <input class="btn btn-custom btn-md btn-block" type="submit" value="Parkinson Predict">
+            <input class="btn btn-custom btn-md btn-block" type="submit" value="Predict Parkinson">
           </div>
         </div>
     </div>
     <div class="col-md-8">
       <div class="thumbnail">
         <p id="output">{{ alpha }}</p>
-        Prediction Result: {{ form.symptoms.label_tag }} <br>
+        <b>Prediction Result:</b> {{ form.symptoms.label_tag }}
         {% for error in form.symptoms.errors %}
         <p class="text-danger lower-error">{{ error }}</p>
         {% endfor %}
@@ -42,11 +42,11 @@
 
 
           {% if is_visible is not None %}
-              <table border="1">
+              <table border="1" style="margin-top: 20px;">
                 <thead>
                   <tr>
                     <th>Patient Name</th>
-                    <th>Parkinson</th>
+                    <th>Parkinson Detected</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,15 +60,14 @@
                     </tr>
                 </tbody>
               </table>
-
-              <br><br><br><br>
-              <label>Patient Details:</label>
               <br>
-              <table border="1">
+              <label style="margin-top: 10px;">Patient Details:</label>
+              <br>
+              <table border="1" style="margin-top: 10px;text-align: left;">
                 <tbody>
                   {% for item1, item2 in datalist %}
                     <tr>
-                      <td> {{ item1 }}</td>
+                      <td><b> {{ item1 }} </b></td>
                       <td> {{ item2 }}</td>
                     </tr>
                   {% endfor %}
@@ -76,40 +75,16 @@
               </table>
               
               <br>
-              <br>
-              <label></label>
-              <br>
-              <br>
-              <label>Parameters:</label>
-              <br>
-
-              <table border="1">
-                <thead>
-                  <tr>
-                    <th>Parameter Name</th>
-                    <th>Parameter Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for item1, item2 in mlist %}
-                    <tr>
-                      <td>{{ item1 }}</td>
-                      <td>{{ item2 }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
           {% else %}
-              <p>Please Select Patient</p>
+              <p style="margin-top: 20px;">Please Select Patient</p>
           {% endif %}
         </div>
-        <br>
       </div>
       </form>
 
       {% if is_visible is not None %}
         <div>
-          <a href="{{ p.report_file.url }}" class="btn btn-custom btn-md btn-block" download>Download Report  {{ p.report_file }}</a>
+          <a href="{{ p.report_file.url }}" class="btn btn-custom btn-md btn-block" download>Download Report</a>
         </div>
       {% endif %}
     </div>
