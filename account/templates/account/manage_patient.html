@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Manage Patient{% endblock %}</title>
+  {% load static %}
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Parkinson Detection System</a>
+    </div>
+
+    <!-- Items -->
+    <div class="collapse navbar-collapse" id="topNavBar">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li>
+          <a href="{% url 'account:login_user' %}">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="{% url 'account:register_patient' %}">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Patient
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="{% url 'account:register_doctor' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
+          </a>
+        </li> -->
+       <!--  <li>
+          {% if is_user %}
+            <a href="{% url 'account:logout_user' %}">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;
+            </a>
+          {% endif %}
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- <div class="container"> -->
+  <!-- <div class="row custom-margin"> -->
+    <!-- <div class="col-md-6"> -->
+      <!-- <div class="row justify-content-md-center align-items-md-center "> -->
+         <div style="width: 100%; overflow: hidden; margin-top: 150px">
+            <div style="width: 600px; margin-left: 400px; float: left;">
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <a href="{% url 'account:register_patient' %}">
+      <!--             <div id="index" class="thumbnail col-md-10" align="center">Add  Patient</div> -->
+                      <div id="index" class="thumbnail col-md-4" align="center">Add  Patient</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <a href="{% url 'account:patient_list' %}">
+                    <div id="index" class="thumbnail col-md-4" align="center">View Patient</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+         </div>
+      <!-- </div> -->
+ <!--      <div class="row justify-content-md-center align-items-md-center "> -->
+          <!-- <a href="{% url 'account:patient_list' %}">
+            <div id="index" class="thumbnail  col-md-10" align="center">View Patient</div>
+          </a> -->
+<!--       </div> -->
+    <!-- </div>
+  </div> -->
+<!-- </div> -->
+</body>
+</html>

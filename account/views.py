@@ -306,3 +306,8 @@ def register_doctor(request):
         'form_profile': form_profile
     }
     return render(request, 'account/register_doctor.html', context)
+
+
+def manage_patient(request):
+    return render(request, 'account/manage_patient.html')
+

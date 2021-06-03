@@ -22,7 +22,7 @@
 <div class="container">
   <div class="row justify-content-md-center align-items-md-center custom-margin">
     <a href="{% url 'data:index' %}">
-      <div class="thumbnail col-md-offset-1 col-md-3" align="center">View Data</div>
+      <div class="thumbnail col-md-offset-1 col-md-3" align="center">Patient Data</div>
     </a>
     {% if is_doctor %}
       <a href="{% url 'predict:parkinson_predict' %}">
@@ -35,11 +35,11 @@
     {% endif %}
   </div>
   <div class="row justify-content-md-center align-items-md-center custom-margin">
-    <a href="{% url 'admin:index' %}">
-      <div class="thumbnail col-md-offset-1 col-md-3" align="center">Admin</div>
+    <a href="{% url 'account:manage-patient' %}">
+      <div class="thumbnail col-md-offset-1 col-md-3" align="center">Manage Patient</div>
     </a>
     <a href="{% url 'account:doctor_account_index' %}">
-      <div class="thumbnail col-md-offset-4 col-md-3" align="center">Account</div>
+      <div class="thumbnail col-md-offset-4 col-md-3" align="center">Profile</div>
     </a>
   </div>
 </div>
