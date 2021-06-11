@@ -61,6 +61,23 @@
                 </tbody>
               </table>
               <br>
+              <label style="margin-top: 10px;">Prediction Probability:</label>
+              <br>
+              <table border="1" style="margin-top: 20px;">
+                <thead>
+                  <tr>
+                    <th>Probability of Parkinson(+)</th>
+                    <th>Probability of Parkinson(-)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{ pos_predict_proba }}%</td>
+                      <td>{{ neg_predict_proba }}%</td>
+                    </tr>
+                </tbody>
+              </table>
+              <br>
               <label style="margin-top: 10px;">Patient Details:</label>
               <br>
               <table border="1" style="margin-top: 10px;text-align: left;">

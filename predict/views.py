@@ -279,8 +279,11 @@ def post_parameter_in_model(request):
         
         #prediction = classifier.predict(np.array([[199.228,209.512,192.091,0.00241,1.00E-05,0.00134,0.00138,0.00402,0.01015,0.089,0.00504,0.00641,0.00762,0.01513,0.00167,30.94,0.432439,0.742055,-7.682587,0.173319,2.103106,0.068501]]))[0]
         prediction = classifier.predict(np.array([parameters_list]))[0]
+        prediction_proba = classifier.predict_proba(np.array([parameters_list]))
         print(type(prediction))
         print(prediction)
+        print(prediction_proba[0][0])
+        print(prediction_proba[0][1])
         # form = MyPredictForm
         parameters_name = ['fo', 'fhi','flo' ,
         'jitter', 'jitter_abs', 'rap', 'ppq', 'ddp' ,
@@ -336,7 +339,9 @@ def post_parameter_in_model(request):
             'patient_name': patientObj.name,
             'datalist': datalist,
             'is_visible': True,
-            'p': p
+            'p': p,
+            'pos_predict_proba': prediction_proba[0][1],
+            'neg_predict_proba': prediction_proba[0][0],
         }
         return render(request, 'predict/parkinson_predict.html', context)
 
