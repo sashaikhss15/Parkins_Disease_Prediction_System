@@ -67,7 +67,7 @@
      <div style="width: 600px; margin-left: 150px; float: left;">
         <div class="container">
           <div class="row justify-content-md-center">
-              <div class="thumbnail col-md-4">
+              <div class="thumbnail col-md-6">
                 <form class="form-group" action="{% url 'data:disease-get' %}" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   {% for field in form %}
@@ -91,7 +91,7 @@
      </div>
 
 
-     <div style="margin-left: 620px;">
+     <div style="margin-left: 900px;">
           <div class="container">
             <div class="row justify-content-md-center">
               <div class="thumbnail col-md-4">

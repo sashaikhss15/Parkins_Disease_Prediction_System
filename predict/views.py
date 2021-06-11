@@ -340,8 +340,8 @@ def post_parameter_in_model(request):
             'datalist': datalist,
             'is_visible': True,
             'p': p,
-            'pos_predict_proba': prediction_proba[0][1],
-            'neg_predict_proba': prediction_proba[0][0],
+            'pos_predict_proba': round(prediction_proba[0][1]*100, 2),
+            'neg_predict_proba': round(prediction_proba[0][0]*100, 2),
         }
         return render(request, 'predict/parkinson_predict.html', context)
 
