@@ -17,43 +17,42 @@
 
     <!-- Header -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'index' %}">Parkinson Detection System</a>
+      <div class="navbar-header mx-auto">
+        <a class="navbar-brand mx-auto" href="{% url 'index' %}">
+          <img src="/static/images/parkinson_logo_final.png" height="110px" width="350px">
+        </a>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{% url 'data:index' %}">
+              <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>&nbsp; Data
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'data:symptom-add' %}">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Voice Sample
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'data:symptoms-list' %}">
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Voice Sample
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'data:disease-add' %}">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Parameter
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'data:diseases-list' %}">
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Parameter
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Items -->
     <div class="collapse navbar-collapse" id="topNavBar">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="{% url 'data:index' %}">
-            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>&nbsp; Data
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'data:symptom-add' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Voice Sample
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'data:symptoms-list' %}">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Voice Sample
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'data:disease-add' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Parameter
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'data:diseases-list' %}">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; View Parameter
-          </a>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>
