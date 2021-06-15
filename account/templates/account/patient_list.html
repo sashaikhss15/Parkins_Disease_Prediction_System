@@ -17,38 +17,36 @@
 
     <!-- Header -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'index' %}">Parkinson Detection System</a>
-    </div>
+      <div class="navbar-header mx-auto">
+        <a class="navbar-brand mx-auto" href="{% url 'index' %}">
+          <img src="/static/images/parkinson_logo_final.png" height="110px" width="350px">
+        </a>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- <li>
+            <a href="{% url 'account:login_user' %}">
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+            </a>
+          </li> -->
+          <li>
+            <a href="{% url 'account:register_patient' %}">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Patient
+            </a>
+          </li>
+          <!-- <li>
+            <a href="{% url 'account:register_doctor' %}">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
+            </a>
+          </li> -->
+          <li>
+            <a href="{% url 'account:logout_user' %}">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
+            </a>
+          </li>
+        </ul>
+      </div>
 
     <!-- Items -->
     <div class="collapse navbar-collapse" id="topNavBar">
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li>
-          <a href="{% url 'account:login_user' %}">
-            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
-          </a>
-        </li> -->
-        <li>
-          <a href="{% url 'account:register_patient' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Patient
-          </a>
-        </li>
-        <!-- <li>
-          <a href="{% url 'account:register_doctor' %}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Doctor
-          </a>
-        </li> -->
-        <li>
-          <a href="{% url 'account:logout_user' %}">
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout
-          </a>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>

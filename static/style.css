@@ -9,21 +9,21 @@ body {
     border-radius: 0;
 }
 
-.navbar-header {
-    float: left;
-    text-align: center;
-    width: 100%;
-    padding-left: 20px;
-    margin-top: -21px;
-    margin-bottom: -23px;
-}
-
 .navbar-brand {
  	float:none;
  	font-size: 30px;
     font-family: 'Verdana', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.navbar-header {
+    float: left;
+    width: 100%;
+    padding-left: 20px;
+    margin-top: -20px;
+    margin-bottom: -23px;
+	height: 165px;
 }
 
 .thumbnail {

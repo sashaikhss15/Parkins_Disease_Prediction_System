@@ -8,6 +8,15 @@ body {
     border-radius: 0;
 }
 
+.navbar-header {
+    float: left;
+    width: 100%;
+    padding-left: 0px;
+	margin-top: -5px;
+    margin-bottom: -23px;
+	height: 150px;
+}
+
 .navbar-brand {
     font-family: 'Verdana', cursive;
     text-transform: uppercase;
