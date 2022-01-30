@@ -23,9 +23,9 @@ MODEL_ROOT = os.path.join(BASE_DIR, "models")
 SECRET_KEY = '0^j$b--8*uke3dt-v4n5ti#9g-2co_l@-h!+albuebf#lz8_p='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['parkinson-prediction-system.herokuapp.com', '127.0.0.1:8000']
 
 # Application definition
 

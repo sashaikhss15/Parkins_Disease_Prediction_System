@@ -1,0 +1,1 @@
+web: gunicorn DPS.wsgi --log-file -
