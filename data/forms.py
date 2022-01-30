@@ -3,6 +3,7 @@ from django import forms
 from data.models import SymptomModel, DiseaseModel
 from account.models import PatientProfileModel
 
+from upload_validator import FileTypeValidator
 
 class SymptomAddForm(forms.ModelForm):
     class Meta:
@@ -12,6 +13,11 @@ class SymptomAddForm(forms.ModelForm):
             'patient ': forms.ModelChoiceField(queryset=PatientProfileModel.objects.all()),
             'symptom_name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'voice_clip' : forms.FileField(
+            #                 label='', help_text="Only image formats are accepted.", required=False,
+                            
+            #                 )
+            # 'voice_clip': forms.FileField(attrs={'class': 'form-control'}),
         }
 
         # def __str__(self):
